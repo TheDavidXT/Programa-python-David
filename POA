@@ -1,0 +1,57 @@
+# Nombre del estudiante: [David Santiago Ramirez Cuellar]
+
+def analizar_jornada_laboral(matriz_horas, umbral=40):
+    resultados = []
+
+    for i in range(len(matriz_horas)):
+        persona = matriz_horas[i]
+
+
+        nombre = persona[0]
+
+
+        lunes = persona[1]
+        martes = persona[2]
+        miercoles = persona[3]
+        jueves = persona[4]
+        viernes = persona[5]
+
+        total_horas = lunes + martes + miercoles + jueves + viernes
+
+        if total_horas > umbral:
+            clasificacion = "Sobretiempo"
+        if total_horas <= umbral:
+            clasificacion = "Horario Estándar"
+
+        diccionario_persona = {}
+        diccionario_persona["nombre"] = nombre
+        diccionario_persona["total_horas"] = total_horas
+        diccionario_persona["clasificacion"] = clasificacion
+
+
+        resultados.append(diccionario_persona)
+
+    return resultados
+
+equipo_horas = [
+    ["David beckham", 8, 8, 9, 8, 8],
+    ["Roberto Carlos", 8, 7, 8, 8, 7],
+    ["lionel guchitini", 9, 9, 8, 9, 9],
+    ["Mark Zukemberg", 8, 8, 8, 8, 8],
+]
+
+informe = analizar_jornada_laboral(equipo_horas)
+
+print("Resultados")
+print("Recurso         | Total Horas  | Estado de Jornada")
+for k in range(len(informe)):
+    persona = informe[k]
+    print(
+        str(persona["nombre"])
+        + "       | "
+        + str(persona["total_horas"])
+        + "          | "
+        + str(persona["clasificacion"])
+    )
+
+input("\nPresiona Enter para salir...")
